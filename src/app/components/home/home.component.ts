@@ -159,6 +159,10 @@ export class HomeComponent implements OnInit {
           next: (result: any) => {
             this.totalPage = result.pages;
             this.employees = result.data;
+            if(this.page > this.totalPage){
+              this.page = this.totalPage
+              this.toPage(this.page)
+            }
           },
           error: (error) => {
             console.log(error);

@@ -1,0 +1,92 @@
+<h3>Employees List</h3>
+
+<div class="search">
+    <input name="search" type="text" class="form-control" [(ngModel)]="searchText" placeholder="Search..."
+        (input)="searchHandler()">
+    <button *ngIf="selectedEmployee !== null" class="btn btn-danger delete" (click)="deleteEmployee()">Delete</button>
+</div>
+<table class="table-employees">
+    <thead>
+        <tr>
+            <th (click)="sortBy('username')" style="cursor: pointer; ">
+                <div style="display: flex; justify-content: space-between;">
+                    <div>Username</div>
+                    <div *ngIf="column === 'username'" style="display: flex; justify-content: right;">
+                        <div *ngIf="sort === true"><i class="fa fa-caret-up"></i></div>
+                        <div *ngIf="sort === false"><i class="fa fa-caret-down"></i></div>
+                    </div>
+                </div>
+            </th>
+            <th (click)="sortBy('firstName')" style="cursor: pointer;">
+                <div style="display: flex; justify-content: space-between;">
+                    <div>FullName</div>
+                    <div *ngIf="column === 'firstName'" style="display: flex; justify-content: right;">
+                        <div *ngIf="sort === true"><i class="fa fa-caret-up"></i></div>
+                        <div *ngIf="sort === false"><i class="fa fa-caret-down"></i></div>
+                    </div>
+                </div>
+            </th>
+            <th (click)="sortBy('email')" style="cursor: pointer;">
+                <div style="display: flex; justify-content: space-between;">
+                    <div>Email</div>
+                    <div *ngIf="column === 'email'" style="display: flex; justify-content: right;">
+                        <div *ngIf="sort === true"><i class="fa fa-caret-up"></i></div>
+                        <div *ngIf="sort === false"><i class="fa fa-caret-down"></i></div>
+                    </div>
+                </div>
+            </th>
+            <th (click)="sortBy('group')" style="cursor: pointer;">
+                <div style="display: flex; justify-content: space-between;">
+                    <div>Group</div>
+                    <div *ngIf="column === 'group'" style="display: flex; justify-content: right;">
+                        <div *ngIf="sort === true"><i class="fa fa-caret-up"></i></div>
+                        <div *ngIf="sort === false"><i class="fa fa-caret-down"></i></div>
+                    </div>
+                </div>
+            </th>
+            <th (click)="sortBy('basicSalary')" style="cursor: pointer;">
+                <div style="display: flex; justify-content: space-between;">
+                    <div>Salary</div>
+                    <div *ngIf="column === 'basicSalary'" style="display: flex; justify-content: right;">
+                        <div *ngIf="sort === true"><i class="fa fa-caret-up"></i></div>
+                        <div *ngIf="sort === false"><i class="fa fa-caret-down"></i></div>
+                    </div>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of employees" [class.selected]="isEmployeeSelected(item)"
+            (dblclick)="detailEmployee(item.id)" (click)="selectEmployee(item)">
+            <td>{{ item.username }}</td>
+            <td>{{ item.firstName+' '+item.lastName }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.group }}</td>
+            <td>{{ item.basicSalary | currency:'Rp. '}}</td>
+        </tr>
+        
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>
+                <div style="display: flex;">
+                    <button (click)="page > 1?toPage(page - 1):null" class="prev" [class.disable]="page <= 1">
+                        {{ 'Prev' }}
+                    </button>
+                    <button *ngFor="let pageNumber of range()" (click)="toPage(pageNumber)" style="cursor: pointer;"
+                        [class.active]="page === pageNumber">
+                        {{ pageNumber }}
+                    </button>
+                    <button (click)="page + 1 <= totalPage? toPage(page + 1):null" class="prev"
+                        [class.disable]="page + 1 > totalPage">
+                        {{ 'Next' }}
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<app-notification [isNotifOpen]="isNotifOpen" *ngIf="isNotifOpen" (closeNotif)="closeNotif()">
+    <div class="message">Delete Berhasil</div>
+</app-notification>

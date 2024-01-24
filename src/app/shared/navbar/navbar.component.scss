@@ -1,0 +1,48 @@
+.navbar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 180px;
+    padding: 15px 30px;
+    font-size: 14px;
+    margin: 0;
+    gap: 5px;
+    transition: font-size 0.3s ease-in-out, width 0.3s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+.navbar ul li a:hover {
+    background-color: rgb(237, 237, 237);
+}
+
+.navbar ul li a.active {
+    background-color: rgb(236, 236, 236);
+}
+
+i {
+    font-size: 25px;
+}
+
+.navbar.close ul li a{
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 80px;
+    padding: 15px 30px;
+    font-size: 0;
+
+}
+
+.navbar{
+    border-right: 1px solid rgb(194, 194, 194);
+}
+

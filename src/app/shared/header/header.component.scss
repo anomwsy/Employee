@@ -1,0 +1,52 @@
+.header{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "left center right";
+    padding: 10px 31px;
+}
+
+.left-header{
+    grid-area: left;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+i{
+    font-size: 20px;
+}
+
+.left-header button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.center-header>a{
+    display: flex;
+    grid-area: center;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+h4{
+    margin: 0;
+}
+
+.right-header{
+    grid-area: right;
+    text-align: right;
+}
+
+.logout{
+    padding: 5px 15px;
+}
+
+i.fa {
+    width: 20px;
+    height: 20px;
+}

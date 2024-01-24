@@ -1,0 +1,31 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 15px;
+}
+label[for="termAndCondition"]{
+    display: flex;
+    width: fit-content;
+    gap: 5px;
+}
+label.input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+div.alert.alert-danger {
+  padding: 5px 20px;
+  text-align: center;
+  margin: 0;
+}
+h3{
+    text-align: center;
+    margin-bottom: 20px;
+}
+button.btn-primary{
+    background-color: red;
+}
+button.btn-primary:active{
+    background-color: rgb(179, 0, 0);
+}

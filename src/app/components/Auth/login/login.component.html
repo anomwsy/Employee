@@ -1,0 +1,29 @@
+<h3>Login</h3>
+<div class="alert alert-danger errorMessage" *ngIf="errorMessage && errorMessage !== ''" style="margin-bottom: 10px;">
+   {{ errorMessage }}
+</div>
+
+<form action="" (submit)="onSubmit()" class="form" [formGroup]="detailForm">
+    <label class="input" for="email">
+        <input placeholder="Enter Your Email" class="form-control" type="text" name="email"  formControlName="email" (input)="onInputChange()" />
+        <div class="alert alert-danger" *ngIf="detailForm.controls['email'].touched && !detailForm.controls['email'].valid">
+            <div *ngIf="detailForm.controls['email'].errors?.['required']">Email is required</div>
+            <div *ngIf="detailForm.controls['email'].errors?.['email']">Email is not valid</div>
+        </div>
+    </label>
+    <label class="input" for="password">
+        <input placeholder="Enter Your Password" autocomplete="password" class="form-control" type="password" name="password"  formControlName="password" (input)="onInputChange()"/>
+        <div class="alert alert-danger" *ngIf="detailForm.controls['password'].touched && !detailForm.controls['password'].valid">
+            <div *ngIf="detailForm.controls['password'].errors?.['required']">Password is required</div>
+       </div>
+    </label>
+    <label for="termAndCondition">
+        <input type="checkbox" class="form-check-input" name="termAndCondition" id="termAndCondition"  formControlName="termAndCondition"/>
+        Term and Condition
+    </label>
+    <div class="alert alert-danger" *ngIf="detailForm.controls['termAndCondition'].touched && !detailForm.controls['termAndCondition'].valid">
+        <div *ngIf="detailForm.controls['termAndCondition'].errors?.['required']">TnA Should be Checked</div>
+    </div>        
+
+    <button type="login" class="btn btn-primary" >Login</button>
+</form>

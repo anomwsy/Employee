@@ -1,0 +1,183 @@
+<div class="button-container" *ngIf="detailEmployee?.id">
+    <button (click)="backToList()" class="btn btn-primary">Back to Emploee List</button>
+    <button *ngIf="!isEditing" class="btn btn-green" (click)="enableForm()">Edit</button>
+    <button *ngIf="isEditing" class="btn btn-danger" (click)="cancelEdit()">Cancel</button>
+</div>
+<div class="detail">
+    <h3>{{detailEmployee?.username}}</h3>
+    <form class="form" [formGroup]="employeeForm">
+        <table>
+            <tr>
+                <td>
+                    <label class="input">
+                        Username
+                    </label>
+                </td>
+                <td>
+                    <input class="form-control" type="text" name="username" formControlName="username">
+                </td>
+            </tr>
+            <tr
+                *ngIf="isEditing && employeeForm.controls['username'].touched && !employeeForm.controls['username'].valid">
+                <td></td>
+                <td>
+                    <div class="alert alert-danger" style="padding: 0; margin-top: 5px;text-align: center;">
+                        <div *ngIf="employeeForm.controls['username'].errors?.['required']">Username is required</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="input">
+                        First Name
+                    </label>
+                </td>
+                <td>
+                    <input class="form-control" type="text" name="firstName" formControlName="firstName">
+                </td>
+            </tr>
+            <tr
+                *ngIf="isEditing && employeeForm.controls['firstName'].touched && !employeeForm.controls['firstName'].valid">
+                <td></td>
+                <td>
+                    <div class="alert alert-danger" style="padding: 0; margin-top: 5px;text-align: center;">
+                        <div *ngIf="employeeForm.controls['firstName'].errors?.['required']">First name is required
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="input">
+                        Last Name
+                    </label>
+                </td>
+                <td>
+                    <input class="form-control" type="text" name="lastName" formControlName="lastName">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="input">
+                        Email
+                    </label>
+                </td>
+                <td>
+                    <input class="form-control" type="email" name="email" formControlName="email">
+                </td>
+            </tr>
+            <tr *ngIf="isEditing && employeeForm.controls['email'].touched && !employeeForm.controls['email'].valid">
+                <td></td>
+                <td>
+                    <div class="alert alert-danger" style="padding: 0; margin-top: 5px;text-align: center;">
+                        <div *ngIf="employeeForm.controls['email'].errors?.['required']">Email is required</div>
+                        <div *ngIf="employeeForm.controls['email'].errors?.['email']">Email is invalid</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="input">
+                        Birth Date
+                    </label>
+                </td>
+                <td>
+                    <input class="form-control" type="date" name="birthDate" formControlName="birthDate">
+                </td>
+            </tr>
+            <tr
+                *ngIf="employeeForm.controls['birthDate'].touched && !employeeForm.controls['birthDate'].valid">
+                <td></td>
+                <td>
+                    <div class="alert alert-danger" style="padding: 0; margin-top: 5px;text-align: center;">
+                        <div *ngIf="employeeForm.controls['birthDate'].errors?.['required']">Birth Date is required</div>
+                        <div *ngIf="employeeForm.controls['birthDate'].hasError('validateAge')">
+                            Please enter a valid birth date.
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="input">
+                        Basic Salary
+                    </label>
+                </td>
+                <td>
+                    <input class="form-control" *ngIf="isEditing" type="number" name="basicSalary"
+                        formControlName="basicSalary">
+                    <input class="form-control" type="text" *ngIf="!isEditing"
+                        value="{{detailEmployee?.basicSalary | currency : 'Rp. '}}" disabled>
+                </td>
+            </tr>
+            <tr
+                *ngIf="isEditing && employeeForm.controls['basicSalary'].touched && !employeeForm.controls['basicSalary'].valid">
+                <td></td>
+                <td>
+                    <div class="alert alert-danger" style="padding: 0; margin-top: 5px;text-align: center;">
+                        <div *ngIf="employeeForm.controls['basicSalary'].errors?.['required']">Basic Salary is required
+                        </div>
+                        <div *ngIf="employeeForm.controls['basicSalary'].errors?.['min']">Basic Salary is invalid</div>
+                    </div>
+                </td>
+            </tr>
+            <tr *ngIf="id">
+                <td>
+                    <label class="input">
+                        Status
+                    </label>
+                </td>
+                <td>
+                    <input class="form-control" type="number" name="status" formControlName="status">
+                </td>
+            </tr>
+            <tr *ngIf="isEditing && id && id !== '' && employeeForm.controls['status'].touched && !employeeForm.controls['status'].valid">
+                <td></td>
+                <td>
+                    <div class="alert alert-danger" style="padding: 0; margin-top: 5px;text-align: center;">
+                        <div *ngIf="employeeForm.controls['status'].errors?.['required']">Status is required</div>
+                        <div *ngIf="employeeForm.controls['status'].errors?.['min']">Status is invalid</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="input">
+                        Group
+                    </label>
+                </td>
+                <td>
+                    <select name="group" id="group" class="form-control" formControlName="group">
+                        <option value="" disabled>-- Select one --</option>
+                        <option *ngFor="let group of grupData" [value]="group">{{group}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr *ngIf="employeeForm.controls['group'].touched && !employeeForm.controls['group'].valid">
+                <td></td>
+                <td>
+                    <div class="alert alert-danger" style="padding: 0; margin-top: 5px;text-align: center;">
+                        <div *ngIf="employeeForm.controls['group'].errors?.['required']">Group is required</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="input">
+                        Description
+                    </label>
+                </td>
+                <td>
+                    <textarea class="form-control" type="text" name="description"
+                        formControlName="description"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 0; padding-top: 30px;">
+                    <button *ngIf="isEditing" class="btn btn-green" (click)="submitSave()"
+                        style="width: 100%;">Save</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -1,0 +1,25 @@
+.layout-container > div {
+  display: flex;
+}
+
+.layout-container > div > div {
+  flex: 1;
+  padding: 20px 50px;
+  height: 90vh;
+  overflow: auto;
+}
+
+.layout-container > div > div::-webkit-scrollbar {
+    width: 12px; /* Lebar scrollbar */
+  }
+  
+  .layout-container > div > div::-webkit-scrollbar-thumb {
+    background-color: #bbbbbb; /* Warna thumb scrollbar */
+    border-radius: 6px; /* Bentuk border thumb scrollbar */
+  }
+  
+  .layout-container > div > div::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Warna track scrollbar */
+    border-radius: 6px; /* Bentuk border track scrollbar */
+  }
+

@@ -1,0 +1,16 @@
+<div class="header">
+    <div class="left-header">
+        <button class="menu-button" (click)="setIsOpenedNav()">
+            <i class="fa fa-bars"></i>
+          </button>
+    </div>
+    <div class="center-header">
+        <a routerLink="/">
+            <img src="{{ logoUrl }}" style="width: 50px; height: 50px">
+            <h4>Angular<b>Course</b></h4>
+        </a>
+    </div>
+    <div class="right-header">
+        <button class="btn btn-danger logout" (click)="logout()">Log Out</button>
+    </div>
+</div>
